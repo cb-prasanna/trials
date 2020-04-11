@@ -1,7 +1,5 @@
 package trials;
 
-import java.sql.Timestamp;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +7,7 @@ import java.util.Map;
  * @author cb-prasanna
  */
 public interface SyncSource {
+    SyncEntities getBatch();
 
     Integer getInt( String key );
 

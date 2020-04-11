@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="44f9ae5b-c154-4c4d-adbf-b406286dab44" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/trials/ApiDataFetchLayer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/trials/DataFetchLayer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/trials/HubspotSyncDestination.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/trials/Mapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/trials/MapperInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/trials/Matcher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/trials/MatcherInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/trials/SyncEntities.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trials/ChargebeeAPIIterator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/trials/ChargebeeSyncSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/trials/ChargebeeSyncSource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trials/Factory.java" beforeDir="false" afterPath="$PROJECT_DIR$/trials/Factory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trials/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/trials/Runner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trials/SyncDestination.java" beforeDir="false" afterPath="$PROJECT_DIR$/trials/SyncDestination.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trials/SyncSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/trials/SyncSource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trials/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/trials/config.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
+  <component name="ProjectId" id="1aNULG3hdbwn6kTnaoRu8CMlYjK" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="LombokPluginEnabledInProject" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="findjar.last.used.dir" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="trials" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="44f9ae5b-c154-4c4d-adbf-b406286dab44" name="Default Changelist" comment="" />
+      <created>1586575487600</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1586575487600</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="325" y="29" key="#com.intellij.ide.util.MemberChooser" timestamp="1586590408250">
+      <screen x="0" y="23" width="1024" height="579" />
+    </state>
+    <state x="325" y="29" key="#com.intellij.ide.util.MemberChooser/0.23.1024.579@0.23.1024.579" timestamp="1586590408250" />
+    <state x="0" y="23" key="SettingsEditor" timestamp="1586575780513">
+      <screen x="0" y="23" width="1024" height="579" />
+    </state>
+    <state x="0" y="23" key="SettingsEditor/0.23.1024.579@0.23.1024.579" timestamp="1586575780513" />
+  </component>
+</project>

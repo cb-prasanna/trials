@@ -5,13 +5,13 @@ import java.util.List;
 /**
  * @author cb-prasanna
  */
-public interface SyncDestination {
+public interface SyncDestination<T> {
 
-    static List<SyncDestination> findBatch( Field field, List<?> ids );
+     List<T> findBatch( Field field, List<?> ids );
 
-    static createBatch();
-    static updateBatch();
-    static createCustomFields();
+    void updateBatch(SyncEntities syncEntities);
+
+    void createCustomFields();
 
     Integer getInt( String key );
 
@@ -24,4 +24,7 @@ public interface SyncDestination {
     void setString( String key, String value );
 
     void setDouble( String key, Double value );
+
+    class T {
+    }
 }

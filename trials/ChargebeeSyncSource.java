@@ -1,16 +1,30 @@
 package trials;
 
-import java.sql.Timestamp;
-import java.util.Iterator;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 /**
  * @author cb-prasanna
  */
-public class ChargebeeSyncSource implements SyncSource {
+public class ChargebeeCustomerSyncSource implements SyncSource {
 
-    public ChargebeeSyncSource() {
+    DataFetchLayer dataLayer;
+
+    public ChargebeeSyncSource(DataFetchLayer db) {
+        this.dataLayer = db;
+    }
+
+    public hasNext(){
+        // check for if there is any data left
+
+    }
+    @Override
+    public SyncEntities next() {
+        dataLayer.getData("Customer");
+        dataLayer.getData("Contacts");
+        dataLayer.getData("Subscriptions");
+        return dataLayer.getData("Subscriptions");
     }
 
     @Override

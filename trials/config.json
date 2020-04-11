@@ -40,7 +40,12 @@
         "dest_field_name": "revenue_tp",
         "dest_field_type": "integer"
       }
-    ]
+    ],
+    "email": {
+      "emailId" : "id",
+      "emails" : [],
+      "Operation":
+    }
   },
 "subscriptionToContact" :{
   "sync_source": "Subscriptions",
