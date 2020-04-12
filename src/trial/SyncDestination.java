@@ -1,4 +1,4 @@
-package trials;
+package trial;
 
 import java.util.List;
 
@@ -7,11 +7,11 @@ import java.util.List;
  */
 public interface SyncDestination {
 
-    static List<SyncDestination> findBatch( Field field, List<?> ids );
-
-    static createBatch();
-    static updateBatch();
-    static createCustomFields();
+//    static List<SyncDestination> findBatch( Field field, List<?> ids );
+//
+//    static createBatch();
+//    static updateBatch();
+//    static createCustomFields();
 
     Integer getInt( String key );
 

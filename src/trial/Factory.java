@@ -1,7 +1,7 @@
-package trials;
+package trial;
 
-import org.joda.time.LocalDate;
-import org.json.simple.JSONObject;
+
+import com.chargebee.org.json.JSONObject;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -16,7 +16,8 @@ public class Factory {
         String resource = "Customer";
         Timestamp startTime = new Timestamp(1234L);
         Timestamp endTime = new Timestamp(1234L);
-        return new ChargebeeAPIIterator<>( resource, startTime, endTime );
+//        return new ChargebeeAPIIterator<>( resource, startTime, endTime );
+        return null;
     }
 
     static SyncDestination createDestination(JSONObject config, JSONObject systemConfig){

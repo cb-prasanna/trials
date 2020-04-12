@@ -1,4 +1,4 @@
-package trials;
+package trial;
 
 /**
  * @author cb-prasanna
