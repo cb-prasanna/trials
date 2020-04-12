@@ -1,6 +1,4 @@
-package trails;
-
-import org.json.JSONObject;
+package trial;
 
 public interface SyncDestinationEntity {
     public int getInt(String name);

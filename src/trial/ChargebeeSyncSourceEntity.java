@@ -68,6 +68,11 @@ public class ChargebeeSyncSourceEntity implements SyncSourceEntity {
         return null;
     }
 
+    @Override
+    public boolean getBoolean(String src_name) {
+        return false;
+    }
+
     public static void main(String[] args) {
         System.out.println("yoyo");
     }

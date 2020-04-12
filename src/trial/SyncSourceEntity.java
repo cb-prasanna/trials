@@ -15,4 +15,5 @@ public interface SyncSourceEntity {
 
     String getResource();
 
+    boolean getBoolean(String src_name);
 }
