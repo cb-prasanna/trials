@@ -1,23 +1,26 @@
-package trial;
+package trials.mapper;
 
 import com.chargebee.org.json.JSONArray;
+import com.chargebee.org.json.JSONException;
 import com.chargebee.org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import trials.syncDestination.SyncDestinationEntity;
+import trials.model.entity.SyncSourceEntity;
 
 class EntityMapper implements Mapper {
     JSONArray array;
     JSONObject systemConfig;
     final Logger log = LoggerFactory.getLogger(EntityMapper.class);
 
-    public EntityMapper(JSONObject config, JSONObject systemConfig) {
+    public EntityMapper(JSONObject config, JSONObject systemConfig) throws JSONException {
         this.array = config.getJSONArray("mappings");
         this.systemConfig = systemConfig;
         validate(this.array);
 
     }
 
-    private void validate(JSONArray array) {
+    private void validate(JSONArray array) throws JSONException {
         String[] mappings = new String[]{"src_name", "dest_name", "src_type", "dest_type"};
         for (int i = 0; i < array.length(); i++) {
             JSONObject cfg = array.getJSONObject(i);
@@ -32,13 +35,19 @@ class EntityMapper implements Mapper {
         String src_name, dest_name;
         JSONObject src_obj, dest_obj;
         for (int i = 0; i < array.length(); i++) {
-            JSONObject cfg = array.getJSONObject(i);
-            map_default(cfg, src, dest);
+            JSONObject cfg = null;
+            try {
+                cfg = array.getJSONObject(i);
+                map_default(cfg, src, dest);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
         }
         return dest;
     }
 
-    private void map_default(JSONObject cfg, SyncSourceEntity src, SyncDestinationEntity dest) throws MapperException {
+    private void map_default(JSONObject cfg, SyncSourceEntity src, SyncDestinationEntity dest) throws MapperException, JSONException {
         String src_type = cfg.getString("src_type");
         String dest_type = cfg.getString("dest_type");
         String src_name = cfg.getString("src_name");

@@ -1,7 +1,8 @@
-package trial;
+package trials.syncSource;
 
 import com.chargebee.org.json.JSONException;
 import com.chargebee.org.json.JSONObject;
+import trials.model.entity.SyncSourceEntity;
 
 /**
  * @author cb-prasanna

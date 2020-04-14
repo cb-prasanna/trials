@@ -1,17 +1,19 @@
-package trial;
+package trials.syncDestination;
+
+import trials.model.entity.SyncSourceEntity;
+import trials.model.enums.Field;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author cb-prasanna
  */
 public interface SyncDestination {
 
-//    static List<SyncDestination> findBatch( Field field, List<?> ids );
-//
-//    static createBatch();
-//    static updateBatch();
-//    static createCustomFields();
+    Map<SyncSourceEntity, Boolean> findBatch(Field field, List<?> ids );
+
+    void createCustomFields();
 
     Integer getInt( String key );
 

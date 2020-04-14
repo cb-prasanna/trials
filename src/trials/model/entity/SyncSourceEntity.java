@@ -1,4 +1,4 @@
-package trial;
+package trials.model.entity;
 
 /**
  * @author cb-prasanna

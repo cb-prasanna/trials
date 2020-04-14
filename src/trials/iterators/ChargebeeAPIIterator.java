@@ -1,4 +1,5 @@
-package trial;
+package trials.iterators;
+
 
 import com.chargebee.ListResult;
 import com.chargebee.filters.TimestampFilter;
@@ -6,6 +7,8 @@ import com.chargebee.internal.ListRequest;
 import com.chargebee.models.*;
 import com.chargebee.org.json.JSONArray;
 import com.chargebee.org.json.JSONObject;
+import trials.syncSource.ChargebeeSyncSourceEntity;
+import trials.model.entity.SyncSourceEntity;
 
 import java.io.IOException;
 import java.sql.Timestamp;
@@ -57,6 +60,7 @@ public class ChargebeeAPIIterator implements Iterator {
                 JSONObject resourceJSON = resourceData.getJSONObject(i).getJSONObject(resource);
                 syncSourceEntities.add( new ChargebeeSyncSourceEntity( resource, resourceJSON ));
             }
+
             syncSourceEntityIterator = syncSourceEntities.iterator();
             offset = request.nextOffset();
             if ( offset == null ){

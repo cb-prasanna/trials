@@ -1,6 +1,13 @@
-package trial;
+package trials.syncDestination;
+
+import trials.model.enums.Field;
+
+import java.util.List;
+import java.util.Map;
 
 public interface SyncDestinationEntity {
+    Map<SyncDestinationEntity, Boolean> findBatch(Field field, List<?> ids );
+
     public int getInt(String name);
     public String getString(String name);
     public double getDouble(String name);

@@ -7,6 +7,7 @@
     "sync_source": "Customers",
     "sync_destination": "Contacts",
     "matching_rules": {
+      "type" : "default",
       "create_on_no_match": true,
       "matching_criteria": {
         "type": "email"
@@ -16,7 +17,8 @@
     "update_field_rules": [
       {
         "type": "no_update"
-      }
+      },
+      "ForceDelete": true
     ],
     "custom_fields": {
       "creation": [
@@ -39,8 +41,28 @@
         "src_field_type": "Float",
         "dest_field_name": "revenue_tp",
         "dest_field_type": "integer"
+      },
+      {
+        "Source" : "EmailSource",
+        "Destintion" : "EmailDestion"
+      },
+      {
+        "Source" : "EmailSource",
+        "Destintion" : "Em"
       }
+<<<<<<< Updated upstream:src/trial/config.json
     ]
+=======
+    ],
+    "EmailSource": {
+      "emailId" : "id",
+      "emails" : [],
+      "Operation": "sum"
+    },
+    "EmailDestion": {
+
+    }
+>>>>>>> Stashed changes:trials/config.json
   },
 "subscriptionToContact" :{
   "sync_source": "Subscriptions",

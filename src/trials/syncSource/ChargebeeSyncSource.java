@@ -1,4 +1,6 @@
-package trial;
+package trials.syncSource;
+
+import trials.model.entity.SyncSourceEntity;
 
 import java.util.Iterator;
 import java.util.List;
@@ -19,7 +21,6 @@ public class ChargebeeSyncSource implements SyncSource {
         return iterator.next();
     }
 
-    @Override
     public Map<String, Boolean> updateBatch(List<SyncSource> syncSources) {
         return null;
     }
