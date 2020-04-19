@@ -1,26 +1,34 @@
-package trials.sync;
+package trials.syncDestination;
 
 import java.util.List;
 import java.util.Map;
+import javafx.util.Pair;
+import trials.model.enums.DestinationEntityTypes;
+import trials.model.enums.FieldTypes;
 
 /**
  * @author cb-prasanna
  */
 public interface SyncDestination {
 
-    Map<SyncSourceEntity, Boolean> findBatch(Field field, List<?> ids);
+    Map<SyncDestinationEntity, Boolean> findBatch(
+        DestinationEntityTypes entityType,
+        FieldTypes field,
+        List<String> ids);
 
-    void createCustomFields();
+    Map<String, Pair<String, Boolean>> createCustomFields(
+        DestinationEntityTypes type,
+        Map<String, String> fieldNames);
 
-    Integer getInt(String key);
+    Integer getInt( String key );
 
-    String getString(String key);
+    String getString( String key );
 
-    Double getDouble(String key);
+    Double getDouble( String key );
 
-    void setInt(String key, Integer value);
+    void setInt( String key, Integer value );
 
-    void setString(String key, String value);
+    void setString( String key, String value );
 
-    void setDouble(String key, Double value);
+    void setDouble( String key, Double value );
 }

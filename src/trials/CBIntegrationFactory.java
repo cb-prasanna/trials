@@ -1,7 +1,7 @@
 package trials;
 
-import org.json.simple.JSONObject;
 import trials.integ.hubspot.HubspotSyncDestination;
+import com.chargebee.org.json.JSONObject;
 import trials.matcher.EntityMatcher;
 import trials.matcher.Matcher;
 import trials.matcher.MatchingRules;
