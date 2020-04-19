@@ -1,4 +1,7 @@
-package trial;
+package trials.integ.chargebee;
+
+import trials.sync.SyncSource;
+import trials.sync.SyncSourceEntity;
 
 import java.util.Iterator;
 import java.util.List;
@@ -11,15 +14,14 @@ public class ChargebeeSyncSource implements SyncSource {
 
     Iterator<SyncSourceEntity> iterator;
 
-    public ChargebeeSyncSource( Iterator<SyncSourceEntity> iterator ) {
+    public ChargebeeSyncSource(Iterator<SyncSourceEntity> iterator) {
         this.iterator = iterator;
     }
 
-    SyncSourceEntity getNext(){
+    SyncSourceEntity getNext() {
         return iterator.next();
     }
 
-    @Override
     public Map<String, Boolean> updateBatch(List<SyncSource> syncSources) {
         return null;
     }

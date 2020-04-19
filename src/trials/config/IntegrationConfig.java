@@ -1,4 +1,4 @@
-package trial;
+package trials.config;
 
 import com.chargebee.org.json.JSONException;
 import com.chargebee.org.json.JSONObject;
@@ -16,7 +16,58 @@ import java.util.List;
  */
 public class IntegrationConfig {
 
-    enum DataType {
+    @SerializedName("sync_items")
+    private List<SyncItem> syncItems;
+
+    @SerializedName("integration")
+    private Integration integration;
+
+    public static void main(String[] args) throws IOException, JSONException {
+        Gson GSON = new Gson();
+        String configJSON = "/Users/cb-prasanna/github/trials/src/trial/config.json";
+//        String systemConfigJSON = "/Users/cb-prasanna/github/trials/src/trial/systemConfig.json";
+        JSONObject config = getJSONFromFile(Paths.get(configJSON));
+//        JSONObject sysConfig = getJSONFromFile(Paths.get(systemConfigJSON));
+        System.out.println(config.toString(2));
+//        System.out.println(sysConfig);
+
+        IntegrationConfig integrationConfig = GSON.fromJson(config.toString(), IntegrationConfig.class);
+        System.out.println(integrationConfig);
+    }
+
+    static JSONObject getJSONFromFile(Path path) throws IOException, JSONException {
+        return new JSONObject(
+                new String(Files.readAllBytes(path))
+        );
+    }
+
+    public Integration getIntegration() {
+        return integration;
+    }
+
+    public List<SyncItem> getSyncItems() {
+        return syncItems;
+    }
+
+    public String toString() {
+        return new Gson().toJson(this);
+    }
+
+    boolean validate() {
+        //TODO : Config JSON Validation
+//        this.getSyncItems().forEach(
+//                syncItem -> {
+//                    syncItem.getMappings().forEach(
+//                            syncItemMapping -> {
+//                                syncItemMapping.
+//                            }
+//                    );
+//                }
+//        );
+        return true;
+    }
+
+    public enum DataType {
         @SerializedName("string")
         STRING,
 
@@ -30,26 +81,12 @@ public class IntegrationConfig {
         BOOLEAN
     }
 
-    enum Integration {
+    public enum Integration {
         @SerializedName("hubspot")
         HUBSPOT
     }
 
-    @SerializedName("integration")
-    private Integration integration;
-
-    @SerializedName("sync_items")
-    List<SyncItem> syncItems;
-
-    public Integration getIntegration() {
-        return integration;
-    }
-
-    public List<SyncItem> getSyncItems() {
-        return syncItems;
-    }
-
-    class SyncItem {
+    public class SyncItem {
         @SerializedName("mappings")
         private List<Mapping> mappings;
 
@@ -102,40 +139,5 @@ public class IntegrationConfig {
         public DataType getType() {
             return type;
         }
-    }
-
-    public String toString(){
-        return new Gson().toJson(this);
-    }
-
-    boolean validate(){
-//        this.getSyncItems().forEach(
-//                syncItem -> {
-//                    syncItem.getMappings().forEach(
-//                            syncItemMapping -> {
-//                                syncItemMapping.
-//                            }
-//                    );
-//                }
-//        );
-    }
-
-    public static void main(String[] args) throws IOException, JSONException {
-        Gson GSON = new Gson();
-        String configJSON = "/Users/cb-prasanna/github/trials/src/trial/config.json";
-//        String systemConfigJSON = "/Users/cb-prasanna/github/trials/src/trial/systemConfig.json";
-        JSONObject config = getJSONFromFile(Paths.get(configJSON));
-//        JSONObject sysConfig = getJSONFromFile(Paths.get(systemConfigJSON));
-        System.out.println(config.toString(2));
-//        System.out.println(sysConfig);
-
-        IntegrationConfig integrationConfig = GSON.fromJson(config.toString(), IntegrationConfig.class);
-        System.out.println(integrationConfig);
-    }
-
-    static JSONObject getJSONFromFile( Path path ) throws IOException, JSONException {
-        return new JSONObject(
-                new String(Files.readAllBytes(path))
-        );
     }
 }

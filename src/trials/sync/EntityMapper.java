@@ -1,18 +1,19 @@
-package trial;
+package trials.sync;
 
-import com.chargebee.org.json.JSONException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import trials.config.IntegrationConfig;
+import trials.config.SystemConfig;
 
 import java.util.List;
 
+
 class EntityMapper implements Mapper {
     private static final Logger log = LoggerFactory.getLogger(EntityMapper.class);
-
     private final List<IntegrationConfig.Mapping> mappings;
 
-    public EntityMapper(IntegrationConfig integrationConfig, SystemConfig systemConfig) throws JSONException {
-        this.mappings = integrationConfig.getSyncItems().get(0).getMappings();
+    public EntityMapper(IntegrationConfig.SyncItem syncItem, SystemConfig systemConfig) {
+        this.mappings = syncItem.getMappings();
     }
 
     public SyncDestinationEntity map(SyncSourceEntity sourceEntity, SyncDestinationEntity destinationEntity) throws Exception {

@@ -1,9 +1,9 @@
-package trial;
+package trials.sync;
 
 /**
  * @author cb-prasanna
  */
-enum Field {
+public enum Field {
     EMAIL,
     PHONE_NUMBER
 }

@@ -1,7 +1,8 @@
-package trial;
+package trials.integ.chargebee;
 
 import com.chargebee.org.json.JSONException;
 import com.chargebee.org.json.JSONObject;
+import trials.sync.SyncSourceEntity;
 
 /**
  * @author cb-prasanna
@@ -16,6 +17,10 @@ public class ChargebeeSyncSourceEntity implements SyncSourceEntity {
         this.resourceJSON = resourceJSON;
     }
 
+    public static void main(String[] args) {
+        System.out.println("yoyo");
+    }
+
     @Override
     public String getType() {
         return resource;
@@ -28,9 +33,9 @@ public class ChargebeeSyncSourceEntity implements SyncSourceEntity {
         int idx;
         for (idx = 0; idx < split.length - 1; idx++) {
             resourceJSON = resourceJSON.optJSONObject(split[idx]);
-//            if ( resourceJSON == null ){
-//                return null;
-//            }
+            if ( resourceJSON == null ){
+                return null;
+            }
         }
         return resourceJSON.optInt(split[idx]);
     }
@@ -42,7 +47,7 @@ public class ChargebeeSyncSourceEntity implements SyncSourceEntity {
         int idx;
         for (idx = 0; idx < split.length - 1; idx++) {
             resourceJSON = resourceJSON.optJSONObject(split[idx]);
-            if ( resourceJSON == null ){
+            if (resourceJSON == null) {
                 return null;
             }
         }
@@ -54,7 +59,7 @@ public class ChargebeeSyncSourceEntity implements SyncSourceEntity {
         try {
             return resourceJSON.getDouble(key);
         } catch (JSONException ex) {
-            throw new RuntimeException("",ex);
+            throw new RuntimeException("", ex);
         }
     }
 
@@ -71,9 +76,5 @@ public class ChargebeeSyncSourceEntity implements SyncSourceEntity {
     @Override
     public boolean getBoolean(String src_name) {
         return false;
-    }
-
-    public static void main(String[] args) {
-        System.out.println("yoyo");
     }
 }

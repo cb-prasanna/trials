@@ -1,4 +1,4 @@
-package trial;
+package trials.sync;
 
 /**
  * @author cb-prasanna

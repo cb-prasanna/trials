@@ -16,8 +16,7 @@
           }
         }
       ]
-    },
-    {
+    }, {
       "sync_source": "subscription",
       "sync_destination": "contact",
       "match_rules": {
