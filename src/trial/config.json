@@ -1,85 +1,58 @@
 {
-  "state" : {
-    "syncStartTime" : "12-adasdasdasd"
-  },
-  "config": {
-  "customerToContact":{
-    "sync_source": "Customers",
-    "sync_destination": "Contacts",
-    "matching_rules": {
-      "create_on_no_match": true,
-      "matching_criteria": {
-        "type": "email"
-      },
-      "error_on_no_match": {}
-    },
-    "update_field_rules": [
-      {
-        "type": "no_update"
-      }
-    ],
-    "custom_fields": {
-      "creation": [
+  "integration": "hubspot",
+  "sync_items": [
+    {
+      "sync_source": "customer",
+      "sync_destination": "contact",
+      "mappings": [
         {
-          "field_name": "",
-          "field_type": "",
-          "label": ""
+          "source": {
+            "name": "email",
+            "type": "string"
+          },
+          "destination": {
+            "name": "email",
+            "type": "string"
+          }
         }
       ]
     },
-    "Mappings": [
-      {
-        "src_field_name": "email",
-        "src_field_type": "String",
-        "dest_field_name": "email",
-        "dest_field_type": "String"
+    {
+      "sync_source": "subscription",
+      "sync_destination": "contact",
+      "match_rules": {
+        "create_on_no_match": true,
+        "matching_criteria": {
+          "type": "email"
+        },
+        "error_on_no_match": {}
       },
-      {
-        "src_field_name": "revenue",
-        "src_field_type": "Float",
-        "dest_field_name": "revenue_tp",
-        "dest_field_type": "integer"
-      }
-    ]
-  },
-"subscriptionToContact" :{
-  "sync_source": "Subscriptions",
-  "sync_destination": "Contacts",
-  "matching_rules": {
-    "create_on_no_match": true,
-    "matching_criteria": {
-      "type": "email"
-    },
-    "error_on_no_match": {}
-  },
-  "update_field_rules": [
-    {
-      "type": "no_update"
-    }
-  ],
-  "custom_fields": {
-    "creation": [
-      {
-        "field_name": "",
-        "field_type": "",
-        "label": ""
-      }
-    ]
-  },
-  "Mappings": [
-    {
-      "src_field_name": "",
-      "src_field_type": "",
-      "dest_field_name": "",
-      "dest_field_type": ""
-    },
-    {
-      "src_field_name": "",
-      "src_field_type": "",
-      "dest_field_name": "",
-      "dest_field_type": ""
+      "update_field_rules": [
+        {
+          "type": "no_update"
+        }
+      ],
+      "custom_fields": {
+        "creation": [
+          {
+            "field_name": "",
+            "field_type": "",
+            "label": ""
+          }
+        ]
+      },
+      "mappings": [
+        {
+          "source": {
+            "name": "email",
+            "type": "string"
+          },
+          "destination": {
+            "name": "email_hubspot",
+            "type": "string"
+          }
+        }
+      ]
     }
   ]
-}
-}
 }
