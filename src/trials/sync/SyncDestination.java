@@ -1,10 +1,9 @@
-package trials.syncDestination;
+package trials.sync;
 
 import java.util.List;
 import java.util.Map;
 import javafx.util.Pair;
 import trials.model.enums.DestinationEntityTypes;
-import trials.model.enums.FieldTypes;
 
 /**
  * @author cb-prasanna

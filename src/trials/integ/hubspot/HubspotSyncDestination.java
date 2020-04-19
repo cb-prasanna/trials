@@ -1,21 +1,65 @@
 package trials.integ.hubspot;
+import static trials.model.enums.DestinationEntityTypes.*;
 
-import trials.sync.Field;
-import trials.sync.SyncDestination;
-import trials.sync.SyncSourceEntity;
-
+import com.sforce.soap.metadata.FileType;
 import java.util.List;
 import java.util.Map;
+import javafx.util.Pair;
+import kong.unirest.HttpResponse;
+import kong.unirest.JsonNode;
+import kong.unirest.Unirest;
+import trials.model.enums.DestinationEntityTypes;
+import trials.sync.FieldTypes;
+import trials.sync.SyncDestinationEntity;
+import java.lang.UnsupportedOperationException;
 
-public class HubspotSyncDestination implements SyncDestination {
+class HubSpotClientDestination implements trials.sync.SyncDestination {
+
+    public HubSpotClientDestination() {
+    }
+
     @Override
-    public Map<SyncSourceEntity, Boolean> findBatch(Field field, List<?> ids) {
+    public Map<SyncDestinationEntity, Boolean> findBatch(
+        DestinationEntityTypes entityType,
+        FieldTypes type, List<String> ids) {
+        switch (entityType) {
+            case Contacts:
+
+                break;
+            case Company:
+                if (type != FieldTypes.ID) {
+                    throw new UnsupportedOperationException("Company can be searched only by ID");
+                }
+
+                break;
+            case Deal:
+                break;
+            default:
+                break;
+        }
+        return null;
+    }
+
+    private Map<SyncDestinationEntity, Boolean> findContactsByIds(List<String> ids) {
+        return null;
+    }
+
+    private Map<SyncDestinationEntity, Boolean> findContactsByEmail(List<String> ids) {
+        return null;
+
+    }
+
+    private Map<SyncDestinationEntity, Boolean> findContactsByPhoneNumber(List<String> ids) {
+
         return null;
     }
 
     @Override
-    public void createCustomFields() {
+    public Map<String, Pair<String, Boolean>> createCustomFields(
+        DestinationEntityTypes type,
+        Map<String, String> fieldNames) {
 
+        return null;
     }
 
     @Override
@@ -47,4 +91,16 @@ public class HubspotSyncDestination implements SyncDestination {
     public void setDouble(String key, Double value) {
 
     }
+
+    public static void main(String[] args) {
+
+        HttpResponse<JsonNode> response = Unirest.post("http://httpbin.org/post")
+            .header("accept", "application/json")
+            .queryString("apiKey", "123")
+            .field("parameter", "value")
+            .field("firstname", "Gary")
+            .asJson();
+        System.out.println(response.getBody());
+    }
+
 }
