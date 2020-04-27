@@ -1,24 +1,24 @@
 package trials.sync;
 
-import java.util.List;
-import java.util.Map;
+import com.chargebee.org.json.JSONException;
 
 public interface SyncDestinationEntity {
-    Map<SyncDestinationEntity, Boolean> findBatch(Field field, List<?> ids);
 
-    int getInt(String name);
+    DestinationEntityTypes getType();
 
-    String getString(String name);
+    int getInt(String name) throws JSONException;
 
-    double getDouble(String name);
+    String getString(String name) throws JSONException;
 
-    boolean getBoolean(String name);
+    double getDouble(String name) throws JSONException;
 
-    void setInt(String name, int value);
+    boolean getBoolean(String name) throws JSONException;
 
-    void setString(String name, String value);
+    void setInt(String name, int value) throws JSONException;
 
-    void setDouble(String name, Double value);
+    void setString(String name, String value) throws JSONException;
 
-    void setBoolean(String name, boolean value);
+    void setDouble(String name, Double value) throws JSONException;
+
+    void setBoolean(String name, boolean value) throws JSONException;
 }

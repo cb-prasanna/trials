@@ -1,33 +1,23 @@
 package trials.sync;
 
+import com.chargebee.org.json.JSONException;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import javafx.util.Pair;
-import trials.model.enums.DestinationEntityTypes;
 
 /**
  * @author cb-prasanna
  */
 public interface SyncDestination {
 
-    Map<SyncDestinationEntity, Boolean> findBatch(
+    Map<String, SyncDestinationEntity> findBatch(
         DestinationEntityTypes entityType,
         FieldTypes field,
-        List<String> ids);
+        List<String> ids) throws HTTPPostException, AccessTokenExpired, JSONException, IOException;
 
     Map<String, Pair<String, Boolean>> createCustomFields(
         DestinationEntityTypes type,
         Map<String, String> fieldNames);
 
-    Integer getInt( String key );
-
-    String getString( String key );
-
-    Double getDouble( String key );
-
-    void setInt( String key, Integer value );
-
-    void setString( String key, String value );
-
-    void setDouble( String key, Double value );
 }

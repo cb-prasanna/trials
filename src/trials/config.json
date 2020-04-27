@@ -4,6 +4,13 @@
     {
       "sync_source": "customer",
       "sync_destination": "contact",
+      "match_rules": {
+        "create_on_no_match": true,
+        "matching_criteria": {
+          "type": "email"
+        },
+        "error_on_no_match": {}
+      },
       "mappings": [
         {
           "source": {
@@ -11,9 +18,14 @@
             "type": "string"
           },
           "destination": {
-            "name": "email",
+            "name": "billing.email",
             "type": "string"
           }
+        },
+        { "type": "conditional",
+          "if": {"name":"status", "value": "in_trial"},
+          "then": [{"name": "pipeline", "value": "TV", "id":  ""},
+            {"name": "stage", "value": "potential customer"}]
         }
       ]
     }, {

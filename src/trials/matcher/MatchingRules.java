@@ -1,18 +1,18 @@
 package trials.matcher;
 
-import trials.sync.Field;
+import trials.sync.FieldTypes;
 
 public class MatchingRules implements RulesMatcher {
 
     private Boolean createOnNoMatch;
-    private Field matchingCriteria;
+    private FieldTypes matchingCriteria;
     private Boolean errorOnNoMatch;
 
     public Boolean getCreateOnNoMatch() {
         return createOnNoMatch;
     }
 
-    public Field getMatching_criteria() {
+    public FieldTypes getMatching_criteria() {
         return matchingCriteria;
     }
 

@@ -1,11 +1,11 @@
 package trials.matcher;
 
-import trials.sync.Field;
+import trials.sync.FieldTypes;
 
 public interface RulesMatcher {
     Boolean getCreateOnNoMatch();
 
-    Field getMatching_criteria();
+    FieldTypes getMatching_criteria();
 
     Boolean getErrorOnNoMatch();
 }

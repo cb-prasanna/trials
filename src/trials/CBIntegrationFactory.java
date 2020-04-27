@@ -25,7 +25,7 @@ public class CBIntegrationFactory {
         System.out.println("Obtaing the Destination Information");
         switch (integration) {
             case HUBSPOT:
-                return new HubspotSyncDestination();
+                return new HubspotSyncDestination(config.toString());
             default:
                 return null;
         }
@@ -42,7 +42,7 @@ public class CBIntegrationFactory {
 
     public static Matcher getMatcher(JSONObject config, JSONObject systemConfig) {
         System.out.println("Resolving config and return the corresponding matcher");
-        return new EntityMatcher(new HubspotSyncDestination(), new MatchingRules());
+        return new EntityMatcher(new HubspotSyncDestination(config.toString()), new MatchingRules());
     }
 
     public static Iterator<SyncSource> getFieldRuleUpdater(JSONObject config, JSONObject systemConfig) {

@@ -1,11 +1,8 @@
 package trials.matcher;
 
-import trials.sync.Field;
+import java.util.List;
 import trials.sync.SyncDestination;
 import trials.sync.SyncSourceEntity;
-
-import java.util.List;
-import java.util.Map;
 
 
 public class EntityMatcher extends Matcher {
@@ -17,8 +14,9 @@ public class EntityMatcher extends Matcher {
 
     @Override
     public Results getMatcherResults(List<SyncSourceEntity> syncEntities) {
-
-        Field matchingCriteria = matchingRules.getMatching_criteria();
+        return null;
+/*
+        FieldTypes matchingCriteria = matchingRules.getMatching_criteria();
         Boolean createFlag = matchingRules.getCreateOnNoMatch();
         Boolean errorFlag = matchingRules.getErrorOnNoMatch();
         Map<SyncSourceEntity, Boolean> map = syncDestination.findBatch(matchingCriteria, syncEntities);
@@ -42,5 +40,7 @@ public class EntityMatcher extends Matcher {
             }
         }
         return results;
+
+ */
     }
 }
