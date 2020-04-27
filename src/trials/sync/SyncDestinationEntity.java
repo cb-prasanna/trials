@@ -21,4 +21,7 @@ public interface SyncDestinationEntity {
     void setDouble(String name, Double value) throws JSONException;
 
     void setBoolean(String name, boolean value) throws JSONException;
+
+    void setNew();
+    boolean isNew();
 }

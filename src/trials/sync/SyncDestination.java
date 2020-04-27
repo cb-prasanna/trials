@@ -20,4 +20,5 @@ public interface SyncDestination {
         DestinationEntityTypes type,
         Map<String, String> fieldNames);
 
+    SyncDestinationEntity createEntity(DestinationEntityTypes type);
 }

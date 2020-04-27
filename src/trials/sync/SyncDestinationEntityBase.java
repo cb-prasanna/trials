@@ -12,11 +12,13 @@ public class SyncDestinationEntityBase implements SyncDestinationEntity {
   private JSONObject data;
   private DestinationEntityTypes type;
   private Set<String> properties;
+  private boolean isNew;
 
   public SyncDestinationEntityBase(DestinationEntityTypes type) {
     data = new JSONObject();
     properties = new HashSet<>();
     this.type = type;
+    this.isNew = false;
   }
 
   @Override
@@ -67,5 +69,15 @@ public class SyncDestinationEntityBase implements SyncDestinationEntity {
   public void setBoolean(String name, boolean value) throws JSONException {
     properties.add(name);
     data.put(name, value);
+  }
+
+  @Override
+  public void setNew() {
+    this.isNew = true;
+  }
+
+  @Override
+  public boolean isNew() {
+    return this.isNew;
   }
 }

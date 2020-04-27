@@ -53,7 +53,7 @@ public class RestClient implements RestClientInterface{
       throws HTTPPutException {
     if (headers == null) headers = new HashMap<String, String>();
     if (putParams == null) putParams = new HashMap<String, String>();
-    var response = Unirest.post(uri.toString())
+    var response = Unirest.put(uri.toString())
         .headers(headers)
         .fields(Collections.<String, Object>unmodifiableMap(putParams)).asString();
 

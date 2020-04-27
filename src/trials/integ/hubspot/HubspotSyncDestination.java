@@ -3,9 +3,8 @@ package trials.integ.hubspot;
 import com.chargebee.org.json.JSONArray;
 import com.chargebee.org.json.JSONException;
 import com.chargebee.org.json.JSONObject;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.google.gson.annotations.SerializedName;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -67,32 +66,32 @@ public class HubspotSyncDestination implements trials.sync.SyncDestination {
     }
 
     static class APIResponse {
-        @JsonProperty("status")
+        @SerializedName("status")
         String status;
-        @JsonProperty("results")
+        @SerializedName("results")
         List<APIResult> results;
 
         static class APIResult {
-            @JsonProperty("id")
+            @SerializedName("id")
             String id;
-            @JsonProperty("properties")
+            @SerializedName("properties")
             HSProperties properties;
-            @JsonProperty("createdAt")
+            @SerializedName("createdAt")
             String createdAt;
-            @JsonProperty("updatedAt")
+            @SerializedName("updatedAt")
             String updatedAt;
-            @JsonProperty("archived")
+            @SerializedName("archived")
             String archived;
         }
 
         static class HSProperties {
-            @JsonProperty("chargebeecustomerid")
+            @SerializedName("chargebeecustomerid")
             String chargebeecustomerid;
 
-            @JsonProperty("email")
+            @SerializedName("email")
             String email;
 
-            @JsonProperty("hs_object_id")
+            @SerializedName("hs_object_id")
             String id;
         }
     }
@@ -115,12 +114,11 @@ public class HubspotSyncDestination implements trials.sync.SyncDestination {
         body.put("inputs", list);
         String result = restClient.post(URI.create("https://api.hubapi.com/crm/v3/objects/contacts/batch/read"),
             oauth.getAuthHeaders(restClient), body.toString());
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        APIResponse response = mapper.readValue(result, APIResponse.class);
+        Gson gson = new Gson();
+        APIResponse response = gson.fromJson(result, APIResponse.class);
         Map<String, SyncDestinationEntity> output = new HashMap<>();
         for (var contact: response.results) {
-            SyncDestinationEntityBase entity = new SyncDestinationEntityBase(DestinationEntityTypes.Contacts);
+            SyncDestinationEntity entity = createEntity(DestinationEntityTypes.Contacts);
             entity.setString("chargebeecustomerid", contact.properties.chargebeecustomerid);
             entity.setString("email", contact.properties.email);
             entity.setString("id", contact.id);
@@ -140,6 +138,11 @@ public class HubspotSyncDestination implements trials.sync.SyncDestination {
         Map<String, String> fieldNames) {
 
         return null;
+    }
+
+    @Override
+    public SyncDestinationEntity createEntity(DestinationEntityTypes type) {
+        return new SyncDestinationEntityBase(type);
     }
 
     public static void main(String[] args) {

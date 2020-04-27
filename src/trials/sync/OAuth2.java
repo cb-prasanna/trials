@@ -1,5 +1,6 @@
 package trials.sync;
 
+import com.chargebee.org.json.JSONObject;
 import com.fasterxml.jackson.jr.ob.JSON;
 import java.io.IOException;
 import java.net.URI;
@@ -49,7 +50,7 @@ public class OAuth2 implements OAuthInterface {
         kv("identifier", identifier)
     ).collect(entriesToMap());
 
-    return JSON.std.asString(outMap);
+    return new JSONObject(outMap).toString();
   }
 
   @Override

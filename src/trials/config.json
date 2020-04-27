@@ -5,11 +5,9 @@
       "sync_source": "customer",
       "sync_destination": "contact",
       "match_rules": {
+        "type": "customer_contact",
         "create_on_no_match": true,
-        "matching_criteria": {
-          "type": "email"
-        },
-        "error_on_no_match": {}
+        "matching_criteria": "email"
       },
       "mappings": [
         {

@@ -1,5 +1,7 @@
 package trials;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import trials.integ.hubspot.HubspotSyncDestination;
 import com.chargebee.org.json.JSONObject;
 import trials.matcher.EntityMatcher;
@@ -21,7 +23,8 @@ public class CBIntegrationFactory {
         return null;
     }
 
-    public static SyncDestination getDestination(JSONObject config, JSONObject systemConfig, IntegrationConfig.Integration integration) {
+    public static SyncDestination getDestination(JSONObject config, JSONObject systemConfig, IntegrationConfig.Integration integration)
+        throws IOException, URISyntaxException {
         System.out.println("Obtaing the Destination Information");
         switch (integration) {
             case HUBSPOT:
@@ -40,7 +43,8 @@ public class CBIntegrationFactory {
         }
     }
 
-    public static Matcher getMatcher(JSONObject config, JSONObject systemConfig) {
+    public static Matcher getMatcher(JSONObject config, JSONObject systemConfig)
+        throws IOException, URISyntaxException {
         System.out.println("Resolving config and return the corresponding matcher");
         return new EntityMatcher(new HubspotSyncDestination(config.toString()), new MatchingRules());
     }
