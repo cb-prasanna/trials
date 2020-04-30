@@ -67,12 +67,12 @@ public class Main {
     //OAuth2 oauth = new OAuth2(authConfig);
     JSONObject body = new JSONObject(
         "{\"properties\":[\"email\",\"chargebeecustomerid\"],\"idProperty\":\"email\"}");
-    var list = new JSONArray();
+    JSONArray list = new JSONArray();
     List<String> ids = new ArrayList<>();
     ids.add("a@b.com");
     ids.add("test@123.com");
-    for (var id : ids) {
-      var item = new JSONObject();
+    for (String id : ids) {
+      JSONObject item = new JSONObject();
       item.put("id", id);
       list.put(item);
     }
@@ -84,7 +84,7 @@ public class Main {
     mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     APIResponse response = mapper.readValue(result, APIResponse.class);
     Map<String, SyncDestinationEntity> output = new HashMap<String, SyncDestinationEntity>();
-    for (var contact : response.results) {
+    for (Main.APIResponse.APIResult contact : response.results) {
       SyncDestinationEntityBase entity = new SyncDestinationEntityBase(
           DestinationEntityTypes.Contacts);
       entity.setString("chargebeecustomerid", contact.properties.chargebeecustomerid);

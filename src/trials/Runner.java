@@ -1,13 +1,17 @@
 package trials;
 
+import com.chargebee.Environment;
+import com.chargebee.org.json.JSONObject;
+import trials.config.IntegrationConfig;
 import trials.integ.chargebee.ChargebeeAPIIterator;
+import trials.sync.SourceEntityTypes;
 import trials.sync.SyncSourceEntity;
 
 /**
  * @author cb-prasanna
  */
 public class Runner {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
 //        String configJSON = "./config.json";
 //        String systemConfigJSON = "./systemConfig.json";
 //        JSONObject config = (JSONObject) new JSONParser().parse(new FileReader(configJSON));
@@ -20,15 +24,8 @@ public class Runner {
 //
 //        Environment.configure("mannar-test","test___dev__DYg3J6z0RwcdXbzpxa3smzNDqjQswCVts");
 
-        ChargebeeAPIIterator customer = new ChargebeeAPIIterator("customer");
-        int i = 0;
-        while (customer.hasNext()) {
-            System.out.println(i++);
-            SyncSourceEntity next = customer.next();
-            System.out.println(next.getString("email"));
-            System.out.println(next.getString("billing_address.line1"));
-        }
-
+		CBIntegrationFactory.getSource(new JSONObject(), new JSONObject(), IntegrationConfig.Integration.HUBSPOT,
+				SourceEntityTypes.Customer);
 //        String configJSON = "/Users/cb-prasanna/intelliJ_Projects/Antlr_Test/src/trials/config.json";
 //        String systemConfigJSON = "/Users/cb-prasanna/intelliJ_Projects/Antlr_Test/src/trials/systemConfig.json";
 //        JSONObject config = (JSONObject) new JSONParser().parse(new FileReader(configJSON));

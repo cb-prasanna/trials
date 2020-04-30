@@ -1,4 +1,4 @@
-package trials.model.enums;
+package trials.sync;
 
 public enum SourceEntityTypes {
   Customer,

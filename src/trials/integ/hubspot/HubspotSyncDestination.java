@@ -105,9 +105,9 @@ public class HubspotSyncDestination implements trials.sync.SyncDestination {
           'inputs': [{'id': 'test@123.com'}, {'id': 'a@b.com'}]}
          */
         JSONObject body = new JSONObject("{\\\"properties\\\":[\\\"email\\\",\\\"chargebeecustomerid\\\"],\\\"idProperty\\\":\\\"email\\\"}");
-        var list = new JSONArray();
-        for (var id: ids) {
-            var item = new JSONObject();
+        JSONArray list = new JSONArray();
+        for (String id: ids) {
+            JSONObject item = new JSONObject();
             item.put("id", id);
             list.put(item);
         }
@@ -117,7 +117,7 @@ public class HubspotSyncDestination implements trials.sync.SyncDestination {
         Gson gson = new Gson();
         APIResponse response = gson.fromJson(result, APIResponse.class);
         Map<String, SyncDestinationEntity> output = new HashMap<>();
-        for (var contact: response.results) {
+        for (HubspotSyncDestination.APIResponse.APIResult contact: response.results) {
             SyncDestinationEntity entity = createEntity(DestinationEntityTypes.Contacts);
             entity.setString("chargebeecustomerid", contact.properties.chargebeecustomerid);
             entity.setString("email", contact.properties.email);

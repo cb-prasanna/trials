@@ -4,6 +4,9 @@ import java.net.URI;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+
+import kong.unirest.HttpRequest;
+import kong.unirest.HttpResponse;
 import kong.unirest.Unirest;
 import trials.config.SystemConfig;
 
@@ -22,7 +25,7 @@ public class RestClient implements RestClientInterface{
 
     if (headers == null) headers = new HashMap<String, String>();
     if (postParams == null) postParams = new HashMap<String, String>();
-    var response = Unirest.post(uri.toString())
+    HttpResponse<String> response = Unirest.post(uri.toString())
         .headers(headers)
         .fields(Collections.<String, Object>unmodifiableMap(postParams)).asString();
 
@@ -37,7 +40,7 @@ public class RestClient implements RestClientInterface{
   public String post(URI uri, Map<String, String> headers, String postBody)
       throws HTTPPostException {
     if (headers == null) headers = new HashMap<String, String>();
-    var response = Unirest.post(uri.toString())
+    HttpResponse<String> response = Unirest.post(uri.toString())
         .headers(headers)
         .body(postBody).asString();
 
@@ -53,7 +56,7 @@ public class RestClient implements RestClientInterface{
       throws HTTPPutException {
     if (headers == null) headers = new HashMap<String, String>();
     if (putParams == null) putParams = new HashMap<String, String>();
-    var response = Unirest.put(uri.toString())
+    HttpResponse<String> response = Unirest.put(uri.toString())
         .headers(headers)
         .fields(Collections.<String, Object>unmodifiableMap(putParams)).asString();
 
@@ -69,7 +72,7 @@ public class RestClient implements RestClientInterface{
       throws HTTPGetException {
     if (headers == null) headers = new HashMap<String, String>();
     if (getParams == null) getParams = new HashMap<String, String>();
-    var response = Unirest.get(uri.toString())
+    HttpResponse<String> response = Unirest.get(uri.toString())
         .headers(headers)
         .queryString(Collections.<String, Object>unmodifiableMap(getParams)).asString();
 
