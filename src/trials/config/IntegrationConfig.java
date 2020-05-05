@@ -4,6 +4,8 @@ import com.chargebee.org.json.JSONException;
 import com.chargebee.org.json.JSONObject;
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
+import trials.sync.DestinationEntityTypes;
+import trials.sync.SourceEntityTypes;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -22,20 +24,21 @@ public class IntegrationConfig {
     @SerializedName("integration")
     private Integration integration;
 
-    public static void main(String[] args) throws IOException, JSONException {
+
+    public static void main() throws IOException, JSONException {
         Gson GSON = new Gson();
-        String configJSON = "/Users/cb-prasanna/github/trials/src/trial/config.json";
+        String localDir = System.getProperty("user.dir");
+        String configJSON = localDir + "/src/trials/integConfig.json";
 //        String systemConfigJSON = "/Users/cb-prasanna/github/trials/src/trial/systemConfig.json";
         JSONObject config = getJSONFromFile(Paths.get(configJSON));
 //        JSONObject sysConfig = getJSONFromFile(Paths.get(systemConfigJSON));
-        System.out.println(config.toString(2));
-//        System.out.println(sysConfig);
-
-        IntegrationConfig integrationConfig = GSON.fromJson(config.toString(), IntegrationConfig.class);
+        IntegrationConfig integrationConfig = GSON.fromJson(config.toString(),
+                IntegrationConfig.class);
         System.out.println(integrationConfig);
     }
 
-    static JSONObject getJSONFromFile(Path path) throws IOException, JSONException {
+
+    static public JSONObject getJSONFromFile(Path path) throws IOException, JSONException {
         return new JSONObject(
                 new String(Files.readAllBytes(path))
         );
@@ -91,20 +94,20 @@ public class IntegrationConfig {
         private List<Mapping> mappings;
 
         @SerializedName("sync_source")
-        private String syncSource;
+        private SourceEntityTypes syncSource;
 
         @SerializedName("sync_destination")
-        private String syncDestination;
+        private DestinationEntityTypes syncDestination;
 
         public List<Mapping> getMappings() {
             return mappings;
         }
 
-        public String getSyncSource() {
+        public SourceEntityTypes getSyncSource() {
             return syncSource;
         }
 
-        public String getSyncDestination() {
+        public DestinationEntityTypes getSyncDestination() {
             return syncDestination;
         }
     }

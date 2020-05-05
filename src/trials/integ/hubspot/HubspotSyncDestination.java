@@ -11,6 +11,7 @@ import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javafx.util.Pair;
 import kong.unirest.HttpResponse;
 import kong.unirest.JsonNode;
@@ -31,8 +32,19 @@ public class HubspotSyncDestination implements trials.sync.SyncDestination {
     private OAuth2 oauth;
     public HubspotSyncDestination(String authConfig) throws IOException, URISyntaxException {
         this.authConfig = authConfig;
-        RestClient restClient = new RestClient();
-        OAuth2 oauth = new OAuth2(authConfig);
+        this.restClient = new RestClient();
+        this.oauth = new OAuth2( "fe9bb31c-9200-482b-99d7-d93caa520b2f",
+                "59ec6883-36fb-44fc-90f4-91eb3ddabaf9",
+                "b969d80d-d5ed-4408-84b3-55ff03229511",
+                "CK-ujvGbLhIFUYEAAEAYwv3JAyDm--AEKMGgDTIZAL7fSnC3frwLcdUK0CcVgusZLcnHeYZKoDoXAA4CxwAADIQDAAgAAAABAAAAAAAABhhCGQC-30pwTbB65kdjFVE7GcEbAJHJTooNQto",
+                "http://localhost:8080/oauth",
+                "https://api.hubapi.com/oauth/v1/token",
+                "2020-04-28T05:45:36.166605",
+                "Site:prem");
+    }
+
+    public void getOauth() {
+        System.out.println("byeeeeeee"+this.oauth);
     }
 
     @Override
@@ -104,7 +116,11 @@ public class HubspotSyncDestination implements trials.sync.SyncDestination {
          'idProperty': 'email',
           'inputs': [{'id': 'test@123.com'}, {'id': 'a@b.com'}]}
          */
-        JSONObject body = new JSONObject("{\\\"properties\\\":[\\\"email\\\",\\\"chargebeecustomerid\\\"],\\\"idProperty\\\":\\\"email\\\"}");
+        JSONObject body = new JSONObject();
+        body.put("properties", new String[] {"email","chargebeecustomerid"});
+        body.put("idProperty", "email");
+        /*JSONObject body = new JSONObject("{\\\"properties\\\":[\\\"email\\\"," +
+                "\\\"chargebeecustomerid\\\"],\\\"idProperty\\\":\\\"email\\\"}");*/
         JSONArray list = new JSONArray();
         for (String id: ids) {
             JSONObject item = new JSONObject();

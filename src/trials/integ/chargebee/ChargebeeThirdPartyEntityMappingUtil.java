@@ -115,9 +115,9 @@ public class ChargebeeThirdPartyEntityMappingUtil implements Iterator {
             List<SyncSourceEntity> syncSourceEntities = new ArrayList<>();
             for (int i = 0; i < request.size(); i++) {
                 JSONObject resourceJSON = request.get(i).thirdPartyEntityMapping().mappingMeta();
-                System.out.println(resourceJSON);
                 syncSourceEntities.add(new ChargebeeSyncSourceEntity(entityType.toString(),
                         resourceJSON));
+              //  System.out.println(syncSourceEntities.get(i).getResource());
             }
             syncSourceEntityIterator = syncSourceEntities.iterator();
             offset = request.nextOffset();

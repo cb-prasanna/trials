@@ -2,31 +2,49 @@ package trials;
 
 import com.chargebee.Environment;
 import com.chargebee.org.json.JSONObject;
+import com.google.gson.Gson;
 import trials.config.IntegrationConfig;
-import trials.integ.chargebee.ChargebeeAPIIterator;
-import trials.sync.SourceEntityTypes;
-import trials.sync.SyncSourceEntity;
+import trials.matcher.Matcher;
+import trials.sync.*;
+
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author cb-prasanna
  */
 public class Runner {
-    public static void main(String[] args) throws Exception{
-//        String configJSON = "./config.json";
-//        String systemConfigJSON = "./systemConfig.json";
-//        JSONObject config = (JSONObject) new JSONParser().parse(new FileReader(configJSON));
-//        JSONObject systemConfig = (JSONObject) new JSONParser().parse(new FileReader(systemConfigJSON));
+    public static void main(String[] args) throws Exception, HTTPPostException, AccessTokenExpired {
+        Gson GSON = new Gson();
+        String localDir = System.getProperty("user.dir");
+        String configJSON = localDir + "/src/trials/integConfig.json";
+        JSONObject config = new IntegrationConfig().getJSONFromFile(Paths.get(configJSON));
+        IntegrationConfig integrationConfig = GSON.fromJson(config.toString(),
+                IntegrationConfig.class);
 
-//        Factory.createSource(config, systemConfig);
+        Iterator<SyncSourceEntity> syncSource = CBIntegrationFactory.getSource(config,
+                integrationConfig.getIntegration(), integrationConfig.getSyncItems().get(0).getSyncSource());
+        SyncDestination syncDestination = CBIntegrationFactory.getDestination(config, integrationConfig.getIntegration()
+                , integrationConfig.getSyncItems().get(0).getSyncDestination());
+        Mapper mapper =
+                CBIntegrationFactory.getMapper(integrationConfig.getSyncItems().get(0),
+                        new JSONObject(), Mapper.Type.DEFAULT);
+        List<String> ids = new ArrayList<>();
+        List<SyncSourceEntity> syncEntites = new ArrayList<SyncSourceEntity>();
+        while (syncSource.hasNext()) {
+            SyncSourceEntity currentItem = syncSource.next();
+            ids.add(currentItem.getString("email"));
+            syncEntites.add(currentItem);
+        }
+        Matcher matcher = CBIntegrationFactory.getMatcher(config, new JSONObject());
 
-//        System.setProperty("com.chargebee.api.protocol", "http");
-//        System.setProperty("com.chargebee.api.domain.suffix", "localcb.in:8080");
-//
-//        Environment.configure("mannar-test","test___dev__DYg3J6z0RwcdXbzpxa3smzNDqjQswCVts");
+        Map<SyncSourceEntity, SyncDestinationEntity> match = matcher.findMatch(syncEntites, syncDestination);
 
-		CBIntegrationFactory.getSource(new JSONObject(), new JSONObject(), IntegrationConfig.Integration.HUBSPOT,
-				SourceEntityTypes.Customer);
-//        String configJSON = "/Users/cb-prasanna/intelliJ_Projects/Antlr_Test/src/trials/config.json";
+//        String configJSON = "/Users/cb-prasanna/intelliJ_Projects/Antlr_Test/src/trials
+//        /integConfig.json";
 //        String systemConfigJSON = "/Users/cb-prasanna/intelliJ_Projects/Antlr_Test/src/trials/systemConfig.json";
 //        JSONObject config = (JSONObject) new JSONParser().parse(new FileReader(configJSON));
 //        JSONObject systemConfig = (JSONObject) new JSONParser().parse(new FileReader(systemConfigJSON));

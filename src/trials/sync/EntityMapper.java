@@ -8,7 +8,7 @@ import trials.config.SystemConfig;
 import java.util.List;
 
 
-class EntityMapper implements Mapper {
+public class EntityMapper implements Mapper {
     private static final Logger log = LoggerFactory.getLogger(EntityMapper.class);
     private final List<IntegrationConfig.Mapping> mappings;
 

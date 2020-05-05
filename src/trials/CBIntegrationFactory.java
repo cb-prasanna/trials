@@ -8,6 +8,7 @@ import com.chargebee.org.json.JSONException;
 import com.stripe.model.Charge;
 import com.sun.corba.se.impl.orbutil.concurrent.Sync;
 import org.apache.axis.types.Entity;
+import trials.config.SystemConfig;
 import trials.integ.chargebee.ChargebeeAPIIterator;
 import trials.integ.chargebee.ChargebeeSyncSource;
 import trials.integ.chargebee.ChargebeeThirdPartyEntityMappingUtil;
@@ -28,15 +29,18 @@ import java.util.Iterator;
 public class CBIntegrationFactory {
 
 
-    public static SyncSource getSource(JSONObject config, JSONObject systemConfig,
+    public static Iterator<SyncSourceEntity> getSource(JSONObject config,
                                        IntegrationConfig.Integration integration,
                                        SourceEntityTypes sourceType) throws Exception {
         System.out.println("Obtaining the Source Information");
-        Iterator sourceIterator = SyncSource.prepareData(integration, sourceType);
-        return new ChargebeeSyncSource(sourceIterator);
+        Iterator<SyncSourceEntity> syncIterator= ChargebeeSyncSource.getBatch(integration,
+                sourceType);
+        return syncIterator;
     }
 
-    public static SyncDestination getDestination(JSONObject config, JSONObject systemConfig, IntegrationConfig.Integration integration)
+    public static SyncDestination getDestination(JSONObject config,
+                                                 IntegrationConfig.Integration integration,
+                                                 DestinationEntityTypes destinationType)
         throws IOException, URISyntaxException {
         System.out.println("Obtaining the Destination Information");
         switch (integration) {
@@ -47,12 +51,13 @@ public class CBIntegrationFactory {
         }
     }
 
-    public static Mapper getMapper(JSONObject config, Mapper.Type mapperType) {
+    public static Mapper getMapper(IntegrationConfig.SyncItem syncItem, JSONObject config,
+                                   Mapper.Type mapperType) {
         System.out.println("Resolving config and return the corresponding mapper");
         switch (mapperType) {
 //            case DEFAULT: return null;
             default:
-                return null;
+                return new EntityMapper(syncItem, new SystemConfig());
         }
     }
 

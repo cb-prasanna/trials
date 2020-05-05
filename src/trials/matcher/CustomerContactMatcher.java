@@ -21,7 +21,7 @@ public class CustomerContactMatcher implements Matcher{
   public CustomerContactMatcher(String Config) {
     this.Config = Config;
     this.createOnNoMatch = true;
-    this.matchField = "email";
+    this.matchField = "EMAIL";
   }
 
   //TODO: default fields which needs to be fetched from Remote needs to be defined for each entity
